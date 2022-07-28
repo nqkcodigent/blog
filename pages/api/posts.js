@@ -41,16 +41,14 @@ async function getPosts(req, res) {
 
       let newFeeds = follows.map((follow) => {
         return {
-          user: follow.user,
-          post: posts.id,
+          post: follow.id,
         };
       });
       await newsFeedPost.insertMany(newFeeds);
       router.get("/feed", async (req, res, next) => {
-        await newFeeds.find({ user: req.user.id }).exec();
+        await newFeeds.find({ post: req.post.id }).exec();
       });
     });
-
     return res.json({
       message: JSON.parse(JSON.stringify(posts)),
       success: true,

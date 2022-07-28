@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.css";
 import Nav from "../components/Nav";
 import PostCard from "../components/PostCard";
 
-export default function Home({ posts }) {
+export default function Home({ posts, follow }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -18,9 +18,8 @@ export default function Home({ posts }) {
             <h2>No added posts</h2>
           ) : (
             <ul>
-              {posts.map((post, i) => (
-                <PostCard post={post} key={i} />
-              ))}
+              {follow &&
+                posts.map((post, i) => <PostCard post={post} key={i} />)}
             </ul>
           )}
         </div>

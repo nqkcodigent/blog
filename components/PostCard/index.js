@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 export default function PostCard({ post }) {
   const [publishing, setPublishing] = useState(false);
+  const [follow, setFollow] = useState(0);
   const [deleting, setDeleting] = useState(false);
   const router = useRouter();
 
@@ -64,6 +65,9 @@ export default function PostCard({ post }) {
         ) : null}
         <button type="button" onClick={() => deletePost(post["_id"])}>
           {deleting ? "Deleting" : "Delete"}
+        </button>
+        <button type="button" onClick={() => setFollow((follow += 1))}>
+          {post ? "Follow" : "Post is not exist"}
         </button>
       </li>
     </>
